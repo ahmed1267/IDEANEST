@@ -1,13 +1,15 @@
 FROM node:20.10
 
-WORKDIR /src/
+WORKDIR /app
 
 COPY package*.json ./
 
 RUN npm install
 
-COPY . ./
+COPY . .
 
-EXPOSE 3000
+RUN npm run build
 
-CMD ["npm", "run", "start"]
+EXPOSE 8080
+
+CMD ["npm", "start"]
